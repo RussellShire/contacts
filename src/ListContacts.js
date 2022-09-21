@@ -50,6 +50,7 @@ class ListContacts extends Component {
                     <Link
                         to='/create'
                         className='add-contact'
+                        onClick={this.props.onNavigate}
                     >Add Contact</Link>
                 </div>
                 {showingContacts.length !== contacts.length && (

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ListContacts from './ListContacts.js';
 import CreateContact from './CreateContact.js';
 import * as ContactsAPI from './utils/ContactsAPI';
@@ -27,23 +27,21 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
-        
-          <ListContacts 
-            contacts={this.state.contacts} 
-            onDeleteContact={this.removeContact}
-            onNavigate={() => {
-              this.setState({ screen: 'create'})
-            }}
-          />
-        
-        {this.state.screen === 'create' && (
-          <CreateContact />
-        )}
-        
+        <Routes>
+          <Route path='/' element={
+            <ListContacts
+              onDeleteContact={this.removeContact}
+              contacts={this.state.contacts}
+            />
+          }/>
+                
+          <Route path='/create' element={
+            <CreateContact />
+          }/>
+        </Routes>
       </div>
-    )
+    ) 
   }
-
 }
 
 export default App;

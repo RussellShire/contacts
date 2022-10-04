@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import RoutesComponent from './RoutesComponent.js';
 import ListContacts from './ListContacts.js';
 import CreateContact from './CreateContact.js';
 import * as ContactsAPI from './utils/ContactsAPI';
@@ -24,6 +25,14 @@ class App extends Component {
     ContactsAPI.remove(contact)
   }
 
+  createContact(contact) {
+    ContactsAPI.create(contact).then(contact => {
+      this.setState(state => ({
+        contacts: state.contacts.contact([ contact ])
+      }));
+    })
+  }
+
   render() {
     return (
       <div className='app'>
@@ -36,7 +45,12 @@ class App extends Component {
           }/>
                 
           <Route path='/create' element={
-            <CreateContact />
+            <CreateContact 
+              onCreateContact={(contact) => {
+                this.createContact(contact);
+                // useNavigate('/')
+              }}
+            />
           }/>
         </Routes>
       </div>

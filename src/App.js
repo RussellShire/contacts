@@ -25,6 +25,7 @@ class App extends Component {
 
   createContact(contact) {
     ContactsAPI.create(contact)
+    
     // UDACITY CODE: Not working, wipes the screen until refresh
     // .then(contact => {
     //   this.setState(state => ({

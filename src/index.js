@@ -13,13 +13,3 @@ root.render(
       
     </BrowserRouter>
 );
-
-// ReactDOM.render(
-//     <BrowserRouter><App /></BrowserRouter>,
-//     document.getElementById('root')
-//   );
-
-// ReactDOM.render(
-//   <App />,
-//   document.getElementById('root')
-// )

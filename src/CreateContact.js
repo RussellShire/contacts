@@ -17,7 +17,6 @@ function CreateContact({onCreateContact}) {
             navigate('/')    
     }
 
-          
         return (
             <div>
                 <Link className='close-create-contact' to='/'>Close</Link>

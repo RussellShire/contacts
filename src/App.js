@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import RoutesComponent from './RoutesComponent.js';
 import ListContacts from './ListContacts.js';
 import CreateContact from './CreateContact.js';
 import * as ContactsAPI from './utils/ContactsAPI';
 
 class App extends Component {
   state = {
-    screen: 'list',
-    contacts: []
+    contacts: [],
   }
 
   componentDidMount() {
@@ -26,11 +24,18 @@ class App extends Component {
   }
 
   createContact(contact) {
-    ContactsAPI.create(contact).then(contact => {
-      this.setState(state => ({
-        contacts: state.contacts.contact([ contact ])
-      }));
-    })
+    ContactsAPI.create(contact)
+    // UDACITY CODE: Not working, wipes the screen until refresh
+    // .then(contact => {
+    //   this.setState(state => ({
+    //     contacts: state.contacts.contact([ contact ])
+    //   }));
+    // })
+
+    this.state.contacts.push(contact) // My solution that works
+
+    // Udacity recommends having history router here, but that is depreciated 
+    // so the navigation has been moved to within the create contact component as useNavigate
   }
 
   render() {
@@ -48,7 +53,6 @@ class App extends Component {
             <CreateContact 
               onCreateContact={(contact) => {
                 this.createContact(contact);
-                // useNavigate('/')
               }}
             />
           }/>
@@ -58,4 +62,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

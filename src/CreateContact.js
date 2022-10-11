@@ -10,9 +10,7 @@ function CreateContact({onCreateContact}) {
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(e.target.name)
         const values = serializeForm(e.target, { hash: true })
-        console.log(values)
             onCreateContact(values)
             navigate('/')    
     }

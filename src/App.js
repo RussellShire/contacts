@@ -26,17 +26,14 @@ class App extends Component {
   createContact(contact) {
     ContactsAPI.create(contact)
     
-    // UDACITY CODE: Not working, wipes the screen until refresh
-    // .then(contact => {
-    //   this.setState(state => ({
-    //     contacts: state.contacts.contact([ contact ])
-    //   }));
-    // })
-
-    this.state.contacts.push(contact) // My solution that works
-
-    // Udacity recommends having history router here, but that is depreciated 
-    // so the navigation has been moved to within the create contact component as useNavigate
+    .then(contact => {
+      this.setState(state => {console.log('state log', state)
+      
+        return {
+        contacts: state.contacts.concat([ contact ])
+        // contacts: [...state.contacts, contact] // either works here
+      }});
+    })
   }
 
   render() {
